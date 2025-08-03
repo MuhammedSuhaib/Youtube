@@ -73,7 +73,7 @@ export default function Sidebar() {
               className="flex items-center gap-3 px-2 py-2 rounded hover:bg-[#423f3f]"
             >
               <Image
-                src="/images/Jack.png"
+                src="/images/user.jpg"
                 alt="Jack"
                 width={28}
                 height={28}

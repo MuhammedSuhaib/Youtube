@@ -1,30 +1,19 @@
+// D:\VScode\GitHub\Youtube\src\app\video\[id]\page.tsx
+import { getVideoData } from "@/lib/fetch";
 import Navbar from "@/components/Header";
-import Image from "next/image";
-import { notFound } from "next/navigation";
 
-export default async function VideoPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const key = process.env.YOUTUBE_API_KEY;
-  const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${params.id}&key=${key}`
+export default function Page({ params }: { params: { id: string } }) {
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <VideoDetail id={params.id} />
+    </div>
   );
-  const data = await res.json();
-  const video = data.items?.[0];
+}
 
-  if (!video) return notFound(); 
+async function VideoDetail({ id }: { id: string }) {
+  const { snippet, channelAvatar } = await getVideoData(id);
 
-  const snippet = video.snippet;
-  const channelId = snippet.channelId;
-
-  // Fetch channel details to get avatar
-  const channelRes = await fetch(
-    `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${key}`
-  );
-  const channelData = await channelRes.json();
-  const channelAvatar = channelData.items?.[0]?.snippet?.thumbnails?.high?.url;
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -33,7 +22,7 @@ export default async function VideoPage({
           <div className="w-full p-15 aspect-video mb-4">
             <iframe
               title={snippet.title}
-              src={`https://www.youtube.com/embed/${params.id}?rel=0`}
+              src={`https://www.youtube.com/embed/${id}?rel=0`}
               className="w-full h-full p-4 rounded-2xl"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               allowFullScreen

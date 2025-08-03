@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 
 const links = [
-  { label: "Home", icon: Home, href: "#" },
+  { label: "Home", icon: Home, href: "/" },
   { label: "Explore", icon: Compass, href: "#" },
   { label: "Shorts", icon: Video, href: "#" },
   { label: "Subscriptions", icon: Youtube, href: "#" },
@@ -28,8 +28,8 @@ export default function Sidebar() {
     <>
       {/* Mobile menu trigger */}
       <Sheet>
-        <SheetTrigger className="border-r">
-          <Menu className="bg-black text-white rounded-md size-5 m-5" />
+        <SheetTrigger className="border-r p-5 hover:bg-[#423f3f]">
+          <Menu className="bg-black text-white  rounded-md size-5" />
         </SheetTrigger>
         <SheetContent side="left" className="p-0 w-60 bg-[#0f0f0f]">
           {/* Add a visually hidden DialogTitle for accessibility */}
@@ -54,7 +54,7 @@ export default function Sidebar() {
                 <Link
                   key={label}
                   href={href}
-                  className="flex items-center gap-4 px-3 py-2 rounded hover:bg-gray-700"
+                  className="flex items-center gap-4 px-3 py-2 rounded hover:bg-[#423f3f]"
                 >
                   <Icon size={20} />
                   <span className="font-medium">{label}</span>
@@ -67,7 +67,7 @@ export default function Sidebar() {
             </h3>
             <a
               href="/"
-              className="flex items-center gap-3 px-2 py-2 rounded hover:bg-gray-700"
+              className="flex items-center gap-3 px-2 py-2 rounded hover:bg-[#423f3f]"
             >
               <Image
                 src="/images/Jack.png"
@@ -76,7 +76,7 @@ export default function Sidebar() {
                 height={28}
                 className="rounded-full"
               />
-              <span>Jack</span>
+              <span>Me</span>
             </a>
             {/* Add more subscriptions */}
           </aside>
@@ -98,7 +98,7 @@ export function Minibar() {
             key={1 + Math.random()}
             title="Navigate"
             href={href}
-            className="flex items-center gap-4 px-3 py-2 rounded hover:bg-gray-700"
+            className="flex items-center gap-4 px-3 py-2 rounded hover:bg-[#423f3f]"
           >
             <Icon size={20} />
           </a>

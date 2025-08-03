@@ -58,7 +58,7 @@ async function getVideos() {
     const avatars = await getChannelAvatars(channelIds);
 
     return allVideos.map((item: any) => ({
-        id: item.id.videoId,
+        id: item.id?.videoId || item.id, // fallback for playlists/videos
         title: item.snippet.title,
         views: "N/A",
         time: item.snippet.publishedAt,

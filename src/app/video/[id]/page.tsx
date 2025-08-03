@@ -47,7 +47,7 @@ export default async function VideoPage({
 
           <div className="flex items-center justify-between mb-6">
             <div className="flex gap-3 items-center">
-              <Image
+              <img
                 src={channelAvatar || "/default-avatar.png"}
                 alt="Channel Avatar"
                 width={40}

@@ -23,6 +23,7 @@ async function getChannelAvatars(channelIds: string[]) {
 // Function to fetch videos from allowed channels
 
 async function getVideos() {
+
     const allVideos: any[] = [];
     for (const source of sources) {
         let url = "";
@@ -57,16 +58,23 @@ async function getVideos() {
     const channelIds = allVideos.map((v) => v.snippet.channelId);
     const avatars = await getChannelAvatars(channelIds);
 
-    return allVideos.map((item: any) => ({
-        id: item.id?.videoId || item.id, // fallback for playlists/videos
-        title: item.snippet.title,
-        views: "N/A",
-        time: item.snippet.publishedAt,
-        thumbnail: item.snippet.thumbnails.medium.url,
-        author: item.snippet.channelTitle,
-        avatar: avatars[item.snippet.channelId],
-        link: `/video/${item.id.videoId}`,
-    }));
+    return allVideos.map((item: any) => {
+        let videoId = item.id?.videoId || item.id;
+        if (item.snippet?.resourceId?.videoId) {
+            videoId = item.snippet.resourceId.videoId;
+        }
+        return {
+            id: videoId,
+            title: item.snippet.title,
+            views: "N/A",
+            time: item.snippet.publishedAt,
+            thumbnail: item.snippet.thumbnails.medium.url,
+            author: item.snippet.channelTitle,
+            avatar: avatars[item.snippet.channelId],
+            link: `/video/${videoId}`,
+        };
+    });
+
 }
 
 export { getVideos };

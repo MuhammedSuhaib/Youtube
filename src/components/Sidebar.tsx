@@ -11,6 +11,7 @@ import {
   Library,
   Bell,
   Video,
+  Download
 } from "lucide-react";
 import Link from "next/link";
 
@@ -21,6 +22,8 @@ const links = [
   { label: "Subscriptions", icon: Youtube, href: "#" },
   { label: "Notifications", icon: Bell, href: "#" },
   { label: "Library", icon: Library, href: "#" },
+  { label: "Download", icon: Download, href: "https://www.youtube.com/feed/downloads" },
+
 ];
 
 export default function Sidebar() {
